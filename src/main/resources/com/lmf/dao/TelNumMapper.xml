@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmf.dao.TelNumMapper">
+
+	<!-- <insert id="insertData" parameterType="java.util.List">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		telnum(MobileNumber,MobileArea,MobileType,AreaCode,PostCode) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.MobileNumber},#{item.MobileArea},#{item.MobileType},#{item.AreaCode},#{item.PostCode})
+		</foreach>
+	</insert> -->
+	
+	<insert id="insertData" parameterType="telNum">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		telnum(MobileNumber,MobileArea,MobileType,AreaCode,PostCode) values
+		(
+		<if test="MobileNumber != null">
+            #{MobileNumber},
+        </if>
+        <if test="MobileArea != null">
+            #{MobileArea},
+        </if>
+        <if test="MobileType != null">
+            #{MobileType}, 
+        </if>
+        <if test="AreaCode != null">
+            #{AreaCode},
+        </if>
+        <if test="PostCode != null">
+            #{PostCode}
+        </if>
+     	)
+	</insert>
+	
+	<select id="getTel" parameterType="java.lang.String" resultType="telNum">
+		select *from telnum where MobileNumber = #{tel}
+	</select>
+
+</mapper>

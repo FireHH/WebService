@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <!-- XML 配置文件（configuration XML）中包含了对 MyBatis 系统的核心设置，
+ 	    获取数据库连接实例的数据源（DataSource）
+ 	    和决定事务作用域和控制方式的事务管理器（TransactionManager） 
+ -->
+<configuration>
+	
+	<!-- 设置懒加载（延迟加载） lazyLoadingEnabled（延迟加载）  aggressiveLazyLoading（积极加载，设置为false为按需加载）-->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!-- 设置二级缓存  -->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	
+	<!-- 给实体类取别名 -->
+	<typeAliases>
+		<!-- <typeAlias type="com.lmf.entity.User" alias="user"/> -->
+		<!-- 批量取别名 -->
+		<package name="com.lmf.po"/>
+	
+	</typeAliases>
+
+
+</configuration>
